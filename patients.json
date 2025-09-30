@@ -1,0 +1,182 @@
+[
+    {
+        "name": "Ann Aiken-Malon",
+        "address": "27 Azoque Court",
+        "coordinate1": 26,
+        "coordinate2": 5,
+        "day": "09",
+        "month": "03",
+        "year": "1933"
+    },
+    {
+        "name": "Maria Aldaz",
+        "address": "104 N. Mesa #23",
+        "coordinate1": 11,
+        "coordinate2": 2,
+        "day": "11",
+        "month": "14",
+        "year": "1942"
+    },
+    {
+        "name": "Juanna Ames",
+        "address": "10443 Vulcan",
+        "coordinate1": 14,
+        "coordinate2": 9,
+        "day": "07",
+        "month": "01",
+        "year": "1937"
+    },
+    {
+        "name": "Chris Archuleta",
+        "address": "8 Salgado Ridge",
+        "coordinate1": 24,
+        "coordinate2": 4,
+        "day": "03",
+        "month": "25",
+        "year": "1928"
+    },
+    {
+        "name": "Dani Escudero",
+        "address": "333 Emory",
+        "coordinate1": 2,
+        "coordinate2": 2,
+        "day": "08",
+        "month": "08",
+        "year": "1932"
+    },
+    {
+        "name": "Maria Hernandez",
+        "address": "88 Fiesta",
+        "coordinate1": 5,
+        "coordinate2": 7,
+        "day": "11",
+        "month": "12",
+        "year": "1940"
+    },
+    {
+        "name": "Yony Johnson",
+        "address": "102 Utah #103",
+        "coordinate1": 11,
+        "coordinate2": 3,
+        "day": "01",
+        "month": "17",
+        "year": "1942"
+    },
+    {
+        "name": "Charles Lantson",
+        "address": "2203 Sunfire",
+        "coordinate1": 22,
+        "coordinate2": 4,
+        "day": "02",
+        "month": "23",
+        "year": "1948"
+    },
+    {
+        "name": "Jesse Patino R",
+        "address": "12 Desert Cove",
+        "coordinate1": 6,
+        "coordinate2": 8,
+        "day": "11",
+        "month": "30",
+        "year": "1943"
+    },
+    {
+        "name": "Thomas Q. Platz",
+        "address": "9037 Polk",
+        "coordinate1": 14,
+        "coordinate2": 5,
+        "day": "09",
+        "month": "17",
+        "year": "1950"
+    },
+    {
+        "name": "James Samadi",
+        "address": "304 Tierra Encino",
+        "coordinate1": 24,
+        "coordinate2": 3,
+        "day": "12",
+        "month": "26",
+        "year": "1958"
+    },
+    {
+        "name": "Janine Samadi",
+        "address": "304 Tierra Encino",
+        "coordinate1": 24,
+        "coordinate2": 3,
+        "day": "08",
+        "month": "27",
+        "year": "1956"
+    },
+    {
+        "name": "Carmelita Smith",
+        "address": "800 Sun Empress",
+        "coordinate1": 25,
+        "coordinate2": 3,
+        "day": "03",
+        "month": "18",
+        "year": "1936"
+    },
+    {
+        "name": "Ivan Torres",
+        "address": "8009 Byron #2",
+        "coordinate1": 14,
+        "coordinate2": 6,
+        "day": "01",
+        "month": "10",
+        "year": "1939"
+    },
+    {
+        "name": "Lori Trang",
+        "address": "4991 Northwest",
+        "coordinate1": 13,
+        "coordinate2": 7,
+        "day": "06",
+        "month": "08",
+        "year": "1933"
+    },
+    {
+        "name": "Jan Villalobos",
+        "address": "3700 Hazel #201",
+        "coordinate1": 14,
+        "coordinate2": 3,
+        "day": "12",
+        "month": "07",
+        "year": "1935"
+    },
+    {
+        "name": "Lisa W. Zarate",
+        "address": "54 W. Ninth",
+        "coordinate1": 12,
+        "coordinate2": 2,
+        "day": "10",
+        "month": "30",
+        "year": "1940"
+    },
+    {
+        "name": "asdf",
+        "address": "10564 asdf",
+        "coordinate1": 1,
+        "coordinate2": "3",
+        "day": "19",
+        "month": "19",
+        "year": "2004"
+    },
+    {
+        "name": "ian",
+        "address": "2y8739sa",
+        "coordinate1": 1,
+        "coordinate2": "5",
+        "day": "19",
+        "month": "19",
+        "year": "2024"
+    },
+    {
+        "name": "asdf",
+        "address": "asdfas 32",
+        "coordinate1": 1,
+        "coordinate2": "8",
+        "day": "08",
+        "month": "10",
+        "year": "2341"
+    }
+]
