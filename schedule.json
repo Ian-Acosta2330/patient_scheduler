@@ -1,1 +1,38 @@
-[]
+[
+    {
+        "name": "Ann Aiken-Malon",
+        "address": "27 Azoque Court",
+        "coordinate1": "26",
+        "coordinate2": "5",
+        "day": "09",
+        "month": "03",
+        "year": "1933",
+        "availableStart": "09:00",
+        "availableEnd": "9:30",
+        "new": "0"
+    },
+    {
+        "name": "Thomas Q. Platz",
+        "address": "9037 Polk",
+        "coordinate1": "14",
+        "coordinate2": "5",
+        "day": "09",
+        "month": "17",
+        "year": "1950",
+        "availableStart": "16:00",
+        "availableEnd": "16:30",
+        "new": "0"
+    },
+    {
+        "name": "Dani Escudero",
+        "address": "333 Emory",
+        "coordinate1": "2",
+        "coordinate2": "2",
+        "day": "08",
+        "month": "08",
+        "year": "1932",
+        "availableStart": "14:30",
+        "availableEnd": "15:00",
+        "new": "0"
+    }
+]

@@ -300,28 +300,28 @@ function markAppointmentTaken($startHour, $startMin, $endHour, $endMin, $takenVa
     }
 }
 
-function deleteFromSchedule($action) {
-    if ($action === 'delete_schedule') {
-        $filename = 'schedule.json';
-        if (!file_exists($filename)) return;
-        $data = json_decode(file_get_contents($filename), true) ?: [];
-        $updatedSchedule = [];
-        foreach ($data as $patient) {
-            if ($patient['name'] !== $_POST['name']) {
-                $updatedSchedule[] = $patient;
-            } else {
-                markAppointmentTaken(
-                    (int)substr($patient['availableStart'], 0, 2),
-                    (int)substr($patient['availableStart'], 3, 2),
-                    (int)substr($patient['availableEnd'], 0, 2),
-                    (int)substr($patient['availableEnd'], 3, 2),
-                    false
-                );
+    function deleteFromSchedule($action) {
+        if ($action === 'delete_schedule') {
+            $filename = 'schedule.json';
+            if (!file_exists($filename)) return;
+            $data = json_decode(file_get_contents($filename), true) ?: [];
+            $updatedSchedule = [];
+            foreach ($data as $patient) {
+                if ($patient['name'] !== $_POST['name']) {
+                    $updatedSchedule[] = $patient;
+                } else {
+                    markAppointmentTaken(
+                        (int)substr($patient['availableStart'], 0, 2),
+                        (int)substr($patient['availableStart'], 3, 2),
+                        (int)substr($patient['availableEnd'], 0, 2),
+                        (int)substr($patient['availableEnd'], 3, 2),
+                        false
+                    );
+                }
             }
+            file_put_contents($filename, json_encode($updatedSchedule, JSON_PRETTY_PRINT));
         }
-        file_put_contents($filename, json_encode($updatedSchedule, JSON_PRETTY_PRINT));
     }
-}
 
 
     function addToSchedule($action){
@@ -392,6 +392,44 @@ function deleteFromSchedule($action) {
         } 
     }
 
+    function optimize($action){
+    if($action!='optimize') return;
+
+        $schedule = json_decode(file_get_contents('schedule.json'),true);
+        $n = count($schedule);
+        if($n<=1) return;
+
+        $indexes = range(0,$n-1);
+        $bestOrder = $schedule;
+        $bestTime = INF;
+
+        $perms = [];
+        function permute($items,$prefix,&$out){
+            if(count($items)==0) { $out[] = $prefix; return; }
+            for($i=0;$i<count($items);$i++){
+                $newItems = $items; $val = array_splice($newItems,$i,1)[0];
+                $newPrefix = array_merge($prefix, [$val]);
+                permute($newItems,$newPrefix,$out);
+            }
+        }
+        permute($indexes, [], $perms);
+
+        foreach($perms as $perm){
+            $time = 0.0;
+            for($i=0;$i<count($perm)-1;$i++){
+                $a = $schedule[$perm[$i]];
+                $b = $schedule[$perm[$i+1]];
+                $time += calcDrive($a['coordinate1'],$a['coordinate2'],$b['coordinate1'],$b['coordinate2']);
+            }
+            if($time < $bestTime){
+                $bestTime = $time;
+                $bestOrder = array_map(function($idx) use ($schedule){ return $schedule[$idx]; }, $perm);
+            }
+        }
+        file_put_contents('schedule.json',json_encode($bestOrder, JSON_PRETTY_PRINT));
+
+    }
+
     function populateSchedule($f){
         $userJson = file_get_contents($f);
         $patients = json_decode($userJson, true);
@@ -442,6 +480,7 @@ function deleteFromSchedule($action) {
 
     $action = $_POST['action'] ?? '';
     
+    optimize($action);
     addPatient($action, "./patients.json");
     deleteFromSchedule($action);
     populate("./patients.json");
@@ -476,6 +515,10 @@ function deleteFromSchedule($action) {
         <input type="submit" value="Add">
     </form>
     <hr>
+    <form method="post" action="">
+        <input type="hidden" name="action" value="optimize">
+        <input type="submit" value="Optimize">
+    </form>
 
 </body>
 </html>

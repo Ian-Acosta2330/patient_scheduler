@@ -1,6 +1,6 @@
 {
     "09:00": {
-        "taken": false
+        "taken": true
     },
     "09:15": {
         "taken": true
@@ -42,13 +42,13 @@
         "taken": false
     },
     "14:30": {
-        "taken": false
+        "taken": true
     },
     "14:45": {
-        "taken": false
+        "taken": true
     },
     "15:00": {
-        "taken": false
+        "taken": true
     },
     "15:15": {
         "taken": false
@@ -60,13 +60,13 @@
         "taken": false
     },
     "16:00": {
-        "taken": false
+        "taken": true
     },
     "16:15": {
-        "taken": false
+        "taken": true
     },
     "16:30": {
-        "taken": false
+        "taken": true
     },
     "16:45": {
         "taken": false
