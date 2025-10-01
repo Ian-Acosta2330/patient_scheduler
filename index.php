@@ -201,6 +201,9 @@ function generateAvailableTimes() {
             for ($min = 0; $min <60; $min += $quarterly) {
                 if($hour==$endTime && $min>0)
                     break;
+                if($hour==12 || ($hour==13 && $min<=45)){
+                    continue;
+                }
                 $timeString = sprintf("%02d:%02d", $hour, $min);
                 $content[$timeString] = ["taken" => false];
             }
@@ -355,6 +358,12 @@ function generateAvailableTimes() {
             ];
 
             $content[]= $entry;
+
+            usort($content, function($a,$b){
+                $t1 = strtotime($a['availableStart']);
+                $t2 = strtotime($b['availableStart']);
+                return $t1 <=> $t2; // spaceship operator: -1, 0, or 1
+            });
 
             file_put_contents($filename, json_encode($content, JSON_PRETTY_PRINT));       
         } 
