@@ -198,7 +198,9 @@ function generateAvailableTimes() {
         $content = [];
 
         for ($hour = $startTime; $hour <= $endTime; $hour++) {
-            for ($min = 0; $min < 60; $min += $quarterly) {
+            for ($min = 0; $min <60; $min += $quarterly) {
+                if($hour==$endTime && $min>0)
+                    break;
                 $timeString = sprintf("%02d:%02d", $hour, $min);
                 $content[$timeString] = ["taken" => false];
             }
@@ -321,7 +323,7 @@ function generateAvailableTimes() {
                 $endHour = $startHour+1;
             } else{
                 $endMin = $endMin + 30;
-                if($endMin>60){
+                if($endMin>=60){
                     $endHour = $startHour+1;
                     $endMin = $endMin % 60;
                 }
