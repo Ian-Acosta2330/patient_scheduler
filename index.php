@@ -266,7 +266,8 @@ function generateAvailableTimes() {
                     $minStart = ($checkHour == $startHour) ? $startMin : 0;
                     $minEnd   = ($checkHour == $endHour) ? $endMin : 45;
                     for($checkMin=$minStart;$checkMin <= $minEnd;$checkMin+=15){
-                        if($data[$start]['taken']===true){
+                        $key =sprintf("%02d:%02d",$checkHour,$checkMin);
+                        if($data[$key]['taken']===true){
                             $isValid=false;
                             break 2;
                         }

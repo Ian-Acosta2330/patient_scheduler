@@ -12,7 +12,7 @@
         "taken": true
     },
     "10:00": {
-        "taken": false
+        "taken": true
     },
     "10:15": {
         "taken": true
@@ -63,13 +63,13 @@
         "taken": false
     },
     "16:15": {
-        "taken": false
+        "taken": true
     },
     "16:30": {
-        "taken": false
+        "taken": true
     },
     "16:45": {
-        "taken": false
+        "taken": true
     },
     "17:00": {
         "taken": false
