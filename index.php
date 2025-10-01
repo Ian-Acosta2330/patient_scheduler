@@ -278,28 +278,50 @@ function generateAvailableTimes() {
         return $isValid;
     }
 
-    function markAppointmentTaken($startHour, $startMin, $endHour, $endMin) {
-        $f = 'availableTimes.json';
-        $inc = 15;
+function markAppointmentTaken($startHour, $startMin, $endHour, $endMin, $takenValue = true) {
+    $f = 'availableTimes.json';
+    $inc = 15;
 
-        if (file_exists($f)) {
-            $data = json_decode(file_get_contents($f), true);
+    if (file_exists($f)) {
+        $data = json_decode(file_get_contents($f), true);
+        for ($h = $startHour; $h <= $endHour; $h++) {
+            $minStart = ($h == $startHour) ? $startMin : 0;
+            $minEnd   = ($h == $endHour) ? $endMin : 45;
 
-            for ($h = $startHour; $h <= $endHour; $h++) {
-                $minStart = ($h == $startHour) ? $startMin : 0;
-                $minEnd   = ($h == $endHour) ? $endMin : 45;
-
-                for ($m = $minStart; $m <= $minEnd; $m += $inc) {
-                    $slotKey = sprintf("%02d:%02d", $h, $m);
-                    if (isset($data[$slotKey])) {
-                        $data[$slotKey]['taken'] = true;
-                    }
+            for ($m = $minStart; $m <= $minEnd; $m += $inc) {
+                $slotKey = sprintf("%02d:%02d", $h, $m);
+                if (isset($data[$slotKey])) {
+                    $data[$slotKey]['taken'] = $takenValue;
                 }
             }
-
-            file_put_contents($f, json_encode($data, JSON_PRETTY_PRINT));
         }
+
+        file_put_contents($f, json_encode($data, JSON_PRETTY_PRINT));
     }
+}
+
+function deleteFromSchedule($action) {
+    if ($action === 'delete_schedule') {
+        $filename = 'schedule.json';
+        if (!file_exists($filename)) return;
+        $data = json_decode(file_get_contents($filename), true) ?: [];
+        $updatedSchedule = [];
+        foreach ($data as $patient) {
+            if ($patient['name'] !== $_POST['name']) {
+                $updatedSchedule[] = $patient;
+            } else {
+                markAppointmentTaken(
+                    (int)substr($patient['availableStart'], 0, 2),
+                    (int)substr($patient['availableStart'], 3, 2),
+                    (int)substr($patient['availableEnd'], 0, 2),
+                    (int)substr($patient['availableEnd'], 3, 2),
+                    false
+                );
+            }
+        }
+        file_put_contents($filename, json_encode($updatedSchedule, JSON_PRETTY_PRINT));
+    }
+}
 
 
     function addToSchedule($action){
@@ -396,8 +418,14 @@ function generateAvailableTimes() {
             "<td>".$patient['day'] . "/" . $patient['month']."/" .$patient['year'] ."</td>".
             "<td>".($patient['new'] == "1" ? "Yes" : "No")."</td>".
             "<td>".$patient['availableStart']."-". $patient['availableEnd']."</td>".
-            "<td>".$duration." min</td>";
-
+            "<td>".$duration." min</td>".
+            "<td>
+                <form method='post' action='' style=display:inline'>
+                    <input type='hidden' name='action' value='delete_schedule'>
+                    <input type='hidden' name='name' value='".htmlspecialchars($patient['name'])."'>
+                    <input type='submit' value='Delete'>
+                </form>
+        </td>";
             echo "</tr>";
         }
         echo "</div>";
@@ -415,12 +443,13 @@ function generateAvailableTimes() {
     $action = $_POST['action'] ?? '';
     
     addPatient($action, "./patients.json");
+    deleteFromSchedule($action);
     populate("./patients.json");
     addToSchedule($action);
     if(file_exists('./schedule.json')){
         populateSchedule('./schedule.json');
     }
-
+    
     ?>
 
 <hr>

@@ -9,19 +9,19 @@
         "taken": true
     },
     "09:45": {
-        "taken": true
+        "taken": false
     },
     "10:00": {
-        "taken": true
+        "taken": false
     },
     "10:15": {
-        "taken": true
+        "taken": false
     },
     "10:30": {
-        "taken": true
+        "taken": false
     },
     "10:45": {
-        "taken": true
+        "taken": false
     },
     "11:00": {
         "taken": false
@@ -48,13 +48,13 @@
         "taken": false
     },
     "15:00": {
-        "taken": true
+        "taken": false
     },
     "15:15": {
-        "taken": true
+        "taken": false
     },
     "15:30": {
-        "taken": true
+        "taken": false
     },
     "15:45": {
         "taken": false
@@ -63,13 +63,13 @@
         "taken": false
     },
     "16:15": {
-        "taken": true
+        "taken": false
     },
     "16:30": {
-        "taken": true
+        "taken": false
     },
     "16:45": {
-        "taken": true
+        "taken": false
     },
     "17:00": {
         "taken": false
